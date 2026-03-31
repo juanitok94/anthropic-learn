@@ -7,6 +7,7 @@ import sources from '@/data/sources.json';
 import type { CurriculumData, SourcesData, KBEntry } from '@/types';
 import { useProgress } from '@/hooks/useProgress';
 import { useKnowledgeBase } from '@/hooks/useKnowledgeBase';
+import InfoTooltip from '@/components/InfoTooltip';
 
 const curriculumData = curriculum as CurriculumData;
 const sourcesData = sources as SourcesData;
@@ -138,9 +139,12 @@ export default function ModulePage({ params }: { params: Promise<{ moduleId: str
             </button>
           ))}
         </div>
-        <button onClick={harvestAll} disabled={isAnyHarvesting} className="px-3 py-1.5 rounded-md border border-[#1a1e30] bg-[#0d0f1c] text-[#5a6080] text-xs font-semibold hover:border-[#d97c4a] hover:text-[#d97c4a] disabled:opacity-40 disabled:cursor-not-allowed transition-all">
-          Harvest All
-        </button>
+        <span className="flex items-center gap-1.5">
+          <button onClick={harvestAll} disabled={isAnyHarvesting} className="px-3 py-1.5 rounded-md border border-[#1a1e30] bg-[#0d0f1c] text-[#5a6080] text-xs font-semibold hover:border-[#d97c4a] hover:text-[#d97c4a] disabled:opacity-40 disabled:cursor-not-allowed transition-all">
+            Harvest All
+          </button>
+          <InfoTooltip text="Generates lessons for all topics in this module sequentially. Takes 2–3 minutes total." />
+        </span>
         <button onClick={exportModuleMd} className="px-3 py-1.5 rounded-md border border-[#1a1e30] bg-[#0d0f1c] text-[#5a6080] text-xs font-semibold hover:border-[#d97c4a] hover:text-[#d97c4a] transition-all ml-auto">
           Export MD
         </button>
@@ -178,7 +182,7 @@ export default function ModulePage({ params }: { params: Promise<{ moduleId: str
                     className="prose-content text-sm leading-7 text-[#7080a8] mt-3"
                     dangerouslySetInnerHTML={{ __html: renderMd(entry.content) }}
                   />
-                  <div className="flex gap-2 mt-4">
+                  <div className="flex gap-2 mt-4 items-center">
                     <button
                       onClick={() => harvestTopic(topic.id, topic.sourceId)}
                       disabled={isHarvesting}
@@ -186,6 +190,7 @@ export default function ModulePage({ params }: { params: Promise<{ moduleId: str
                     >
                       Re-harvest
                     </button>
+                    <InfoTooltip text="Calls Anthropic API to generate a structured lesson from official docs. Saves automatically — no re-generating needed." position="top" />
                     <button
                       onClick={() => markUnderstood(topic.id, !isUnderstood)}
                       className={`px-3 py-1.5 rounded-md border text-xs font-semibold transition-all ${isUnderstood ? 'border-[#50c87840] text-[#50c878] bg-[#0a140c]' : 'border-[#1e2238] bg-[#10121e] text-[#5a6080] hover:border-[#50c87880] hover:text-[#50c878]'}`}
@@ -199,13 +204,16 @@ export default function ModulePage({ params }: { params: Promise<{ moduleId: str
               {!entry && !isHarvesting && (
                 <div className="border-t border-[#13162a] px-4 py-3">
                   {err && <div className="text-xs font-['JetBrains_Mono'] text-[#e07070] bg-[#150c0c] border border-[#3a1a1a] rounded px-3 py-2 mb-2">{err}</div>}
-                  <button
-                    onClick={() => harvestTopic(topic.id, topic.sourceId)}
-                    disabled={isHarvesting}
-                    className="w-full py-2 rounded-md border border-[#1e2238] bg-[#10121e] text-[#5a6080] text-xs font-semibold hover:border-[#d97c4a] hover:text-[#d97c4a] hover:bg-[#14100a] disabled:opacity-30 transition-all"
-                  >
-                    Harvest Topic
-                  </button>
+                  <div className="flex items-center gap-1.5">
+                    <button
+                      onClick={() => harvestTopic(topic.id, topic.sourceId)}
+                      disabled={isHarvesting}
+                      className="flex-1 py-2 rounded-md border border-[#1e2238] bg-[#10121e] text-[#5a6080] text-xs font-semibold hover:border-[#d97c4a] hover:text-[#d97c4a] hover:bg-[#14100a] disabled:opacity-30 transition-all"
+                    >
+                      Harvest Topic
+                    </button>
+                    <InfoTooltip text="Calls Anthropic API to generate a structured lesson from official docs. Saves automatically — no re-generating needed." position="top" />
+                  </div>
                 </div>
               )}
             </div>
