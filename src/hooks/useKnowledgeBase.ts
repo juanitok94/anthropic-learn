@@ -1,8 +1,10 @@
 'use client';
 import { useState, useEffect, useCallback } from 'react';
-import { KBEntry, KnowledgeBaseData } from '@/types';
+import type { KBEntry, KnowledgeBaseData } from '@/types';
+import seedData from '@/data/knowledge-base-seed.json';
 
 const STORAGE_KEY = 'anthropic-learn-kb';
+const seed = seedData as KnowledgeBaseData;
 
 export function useKnowledgeBase() {
   const [kb, setKb] = useState<KnowledgeBaseData>({ entries: {} });
@@ -13,6 +15,8 @@ export function useKnowledgeBase() {
       const stored = localStorage.getItem(STORAGE_KEY);
       if (stored) {
         setKb(JSON.parse(stored));
+      } else if (Object.keys(seed.entries).length > 0) {
+        setKb(seed);
       }
     } catch {}
     setLoaded(true);

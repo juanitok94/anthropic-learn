@@ -81,3 +81,16 @@ export interface Progress {
   lastStudied: Record<string, string>;
   recentlyViewed: string[];
 }
+
+export interface AnalysisResult {
+  studyNotes: string;
+  tips: string;
+  curriculumMap: string[];
+  docRefs: string[];
+  analyzedAt: string;
+  raw: string;
+}
+
+export interface AnalysesData {
+  analyses: Record<string, AnalysisResult>;
+}

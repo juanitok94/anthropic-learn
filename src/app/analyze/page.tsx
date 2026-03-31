@@ -1,7 +1,8 @@
 'use client';
 import { useState, useCallback, useRef } from 'react';
 import transcriptsData from '@/data/transcripts.json';
-import type { TranscriptsData, TranscriptChunk } from '@/types';
+import type { TranscriptsData, TranscriptChunk, AnalysisResult } from '@/types';
+import { useTranscriptAnalyses } from '@/hooks/useTranscriptAnalyses';
 
 const data = transcriptsData as unknown as TranscriptsData;
 
@@ -18,18 +19,9 @@ function renderMd(text: string): string {
     .replace(/^(?!<[hup/<])(.+)$/gm, m => m.trim() ? `<p>${m}</p>` : '');
 }
 
-type AnalysisResult = {
-  studyNotes: string;
-  tips: string;
-  curriculumMap: string[];
-  docRefs: string[];
-  analyzedAt: string;
-  raw: string;
-};
-
 export default function AnalyzePage() {
   const transcript = data.transcripts[0];
-  const [analyses, setAnalyses] = useState<Record<string, AnalysisResult>>({});
+  const { analyses, saveAnalysis } = useTranscriptAnalyses();
   const [processing, setProcessing] = useState<string | null>(null);
   const [expanded, setExpanded] = useState<Record<string, boolean>>({});
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -58,14 +50,14 @@ export default function AnalyzePage() {
         analyzedAt: new Date().toISOString(),
         raw: json.content,
       };
-      setAnalyses(p => ({ ...p, [chunk.id]: result }));
+      saveAnalysis(chunk.id, result);
       setExpanded(p => ({ ...p, [chunk.id]: true }));
     } catch (e: unknown) {
       setErrors(p => ({ ...p, [chunk.id]: e instanceof Error ? e.message : 'Error' }));
     }
     setProcessing(null);
     await new Promise(r => setTimeout(r, 400));
-  }, []);
+  }, [saveAnalysis]);
 
   const analyzeAll = async () => {
     setRunningAll(true);

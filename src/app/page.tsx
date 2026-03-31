@@ -1,7 +1,9 @@
 'use client';
 import Link from 'next/link';
+import { useCallback } from 'react';
 import { useProgress } from '@/hooks/useProgress';
 import { useKnowledgeBase } from '@/hooks/useKnowledgeBase';
+import { useTranscriptAnalyses } from '@/hooks/useTranscriptAnalyses';
 import curriculum from '@/data/curriculum.json';
 import type { CurriculumData, Module } from '@/types';
 
@@ -10,6 +12,19 @@ const curriculumData = curriculum as CurriculumData;
 export default function Dashboard() {
   const { progress, loaded } = useProgress();
   const { kb } = useKnowledgeBase();
+  const { analyses } = useTranscriptAnalyses();
+
+  const exportSeedFile = useCallback((type: 'kb' | 'analyses') => {
+    const json = type === 'kb'
+      ? JSON.stringify({ entries: kb.entries }, null, 2)
+      : JSON.stringify({ analyses }, null, 2);
+    const filename = type === 'kb' ? 'knowledge-base-seed.json' : 'transcripts-seed.json';
+    const blob = new Blob([json], { type: 'application/json' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = filename;
+    a.click();
+  }, [kb.entries, analyses]);
 
   const allTopics = curriculumData.modules.flatMap(m => m.topics);
   const understoodCount = Object.values(progress.understood).filter(Boolean).length;
@@ -115,6 +130,38 @@ export default function Dashboard() {
           </div>
         </div>
       )}
+      {/* Seed Data Export */}
+      <div className="border border-dashed border-[#D2D2D7] rounded-2xl p-5">
+        <div className="flex items-start justify-between gap-4 mb-4">
+          <div>
+            <div className="text-[11px] font-semibold uppercase tracking-wider text-[#6E6E73] mb-1">Seed Data Export</div>
+            <p className="text-xs text-[#6E6E73] max-w-sm leading-relaxed">
+              Export current state as seed files. Commit to <code className="bg-[#F5F5F7] px-1 py-0.5 rounded text-[#1D1D1F] border border-[#D2D2D7]">src/data/</code> to pre-populate the app for all new visitors.
+            </p>
+          </div>
+        </div>
+        <div className="grid grid-cols-2 gap-3">
+          <button
+            onClick={() => exportSeedFile('kb')}
+            disabled={harvestedCount === 0}
+            className="flex flex-col gap-1 p-4 rounded-xl border border-[#D2D2D7] bg-white text-left hover:border-[#D97C4A] transition-all disabled:opacity-40 disabled:cursor-not-allowed group"
+          >
+            <div className="text-xs font-semibold text-[#1D1D1F] group-hover:text-[#D97C4A] transition-colors">knowledge-base-seed.json</div>
+            <div className="text-[11px] text-[#6E6E73]">{harvestedCount} harvested {harvestedCount === 1 ? 'entry' : 'entries'}</div>
+          </button>
+          <button
+            onClick={() => exportSeedFile('analyses')}
+            disabled={Object.keys(analyses).length === 0}
+            className="flex flex-col gap-1 p-4 rounded-xl border border-[#D2D2D7] bg-white text-left hover:border-[#D97C4A] transition-all disabled:opacity-40 disabled:cursor-not-allowed group"
+          >
+            <div className="text-xs font-semibold text-[#1D1D1F] group-hover:text-[#D97C4A] transition-colors">transcripts-seed.json</div>
+            <div className="text-[11px] text-[#6E6E73]">{Object.keys(analyses).length} analyzed {Object.keys(analyses).length === 1 ? 'section' : 'sections'}</div>
+          </button>
+        </div>
+        <p className="text-[11px] text-[#6E6E73] mt-3 leading-relaxed">
+          After downloading, replace <code className="bg-[#F5F5F7] px-1 py-0.5 rounded text-[#1D1D1F] border border-[#D2D2D7]">src/data/knowledge-base-seed.json</code> and <code className="bg-[#F5F5F7] px-1 py-0.5 rounded text-[#1D1D1F] border border-[#D2D2D7]">src/data/transcripts-seed.json</code>, then commit and push. New visitors will load your pre-seeded content.
+        </p>
+      </div>
     </main>
   );
 }
