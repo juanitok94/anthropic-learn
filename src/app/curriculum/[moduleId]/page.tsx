@@ -12,7 +12,6 @@ import InfoTooltip from '@/components/InfoTooltip';
 const curriculumData = curriculum as CurriculumData;
 const sourcesData = sources as SourcesData;
 
-// Flatten all sources into a map by id
 const sourceMap: Record<string, { label: string; url: string; bizTopic?: boolean }> = {};
 Object.values(sourcesData.sections).forEach(items => {
   items.forEach(item => { sourceMap[item.id] = item; });
@@ -118,34 +117,56 @@ export default function ModulePage({ params }: { params: Promise<{ moduleId: str
     <main className="max-w-3xl mx-auto px-8 py-10 flex flex-col gap-6">
       {/* Breadcrumb */}
       <div className="flex items-center gap-2 flex-wrap">
-        <Link href="/curriculum" className="px-3 py-1.5 rounded-md border border-[#1a1e30] bg-[#0d0f1c] text-[#5a6080] text-xs hover:text-[#a0a8c8] hover:border-[#2a2f45] transition-all">
+        <Link
+          href="/curriculum"
+          className="px-3 py-1.5 rounded-xl border border-[#D2D2D7] bg-white text-[#6E6E73] text-xs font-medium shadow-[0_2px_8px_rgba(0,0,0,0.06)] hover:text-[#1D1D1F] hover:border-[#D97C4A] transition-all"
+        >
           ← Curriculum
         </Link>
-        <span className="text-xs text-[#3a4060] font-['JetBrains_Mono']">/ <span style={{ color: levelColor }}>{mod.level}</span> / {mod.title}</span>
+        <span className="text-xs text-[#6E6E73]">
+          / <span style={{ color: levelColor }}>{mod.level}</span> / {mod.title}
+        </span>
       </div>
 
       {/* Header */}
       <div>
-        <h1 className="font-['Syne'] font-extrabold text-2xl text-white tracking-tight">{mod.title}</h1>
-        <div className="text-xs font-['JetBrains_Mono'] text-[#3a4060] mt-1">{mod.topics.length} topics · {mod.topics.reduce((a, t) => a + t.readingMinutes, 0)} min total</div>
+        <h1 className="font-['Syne'] font-extrabold text-2xl text-[#1D1D1F] tracking-tight">{mod.title}</h1>
+        <div className="text-xs text-[#6E6E73] mt-1">{mod.topics.length} topics · {mod.topics.reduce((a, t) => a + t.readingMinutes, 0)} min total</div>
       </div>
 
       {/* Controls */}
       <div className="flex items-center gap-3 flex-wrap">
-        <div className="flex gap-1.5">
+        <div className="flex gap-1.5 p-1 bg-[#F5F5F7] rounded-xl">
           {(['lesson', 'kb'] as const).map(m => (
-            <button key={m} onClick={() => setMode(m)} className={`px-3 py-1.5 rounded-md border text-xs font-medium transition-all ${mode === m ? 'border-[#d97c4a] text-[#d97c4a] bg-[#1a1008]' : 'border-[#1a1e30] bg-[#0d0f1c] text-[#4a5070] hover:text-[#8090b0]'}`}>
+            <button
+              key={m}
+              onClick={() => setMode(m)}
+              className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
+                mode === m
+                  ? 'bg-white text-[#1D1D1F] shadow-[0_1px_4px_rgba(0,0,0,0.1)]'
+                  : 'text-[#6E6E73] hover:text-[#1D1D1F]'
+              }`}
+            >
               {m === 'lesson' ? 'Lessons' : 'Knowledge Base'}
             </button>
           ))}
         </div>
+
         <span className="flex items-center gap-1.5">
-          <button onClick={harvestAll} disabled={isAnyHarvesting} className="px-3 py-1.5 rounded-md border border-[#1a1e30] bg-[#0d0f1c] text-[#5a6080] text-xs font-semibold hover:border-[#d97c4a] hover:text-[#d97c4a] disabled:opacity-40 disabled:cursor-not-allowed transition-all">
+          <button
+            onClick={harvestAll}
+            disabled={isAnyHarvesting}
+            className="px-3 py-1.5 rounded-xl border border-[#D2D2D7] bg-white text-[#1D1D1F] text-xs font-semibold shadow-[0_2px_8px_rgba(0,0,0,0.06)] hover:border-[#D97C4A] hover:text-[#D97C4A] disabled:opacity-40 disabled:cursor-not-allowed transition-all"
+          >
             Harvest All
           </button>
           <InfoTooltip text="Generates lessons for all topics in this module sequentially. Takes 2–3 minutes total." />
         </span>
-        <button onClick={exportModuleMd} className="px-3 py-1.5 rounded-md border border-[#1a1e30] bg-[#0d0f1c] text-[#5a6080] text-xs font-semibold hover:border-[#d97c4a] hover:text-[#d97c4a] transition-all ml-auto">
+
+        <button
+          onClick={exportModuleMd}
+          className="px-3 py-1.5 rounded-xl border border-[#D2D2D7] bg-white text-[#6E6E73] text-xs font-semibold shadow-[0_2px_8px_rgba(0,0,0,0.06)] hover:border-[#D97C4A] hover:text-[#D97C4A] transition-all ml-auto"
+        >
           Export MD
         </button>
       </div>
@@ -160,59 +181,81 @@ export default function ModulePage({ params }: { params: Promise<{ moduleId: str
           const err = errors[topic.id];
 
           return (
-            <div key={topic.id} className="bg-[#0c0e1a] border border-[#13162a] rounded-xl overflow-hidden">
+            <div key={topic.id} className="bg-white rounded-2xl overflow-hidden shadow-[0_2px_12px_rgba(0,0,0,0.08)]">
               <div
-                className="flex items-center gap-2.5 px-4 py-3.5 cursor-pointer hover:bg-[#0f1120] transition-colors"
+                className="flex items-center gap-3 px-5 py-4 cursor-pointer hover:bg-[#F5F5F7] transition-colors"
                 onClick={() => entry && setExpanded(p => ({ ...p, [topic.id]: !p[topic.id] }))}
               >
-                <div className={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${isUnderstood ? 'bg-[#50c878]' : entry ? 'bg-[#d97c4a]' : 'bg-[#2a3050]'}`} />
-                <span className="text-sm font-medium text-[#c0c8e0] flex-1">{topic.label}</span>
-                <span className="text-[10px] font-['JetBrains_Mono'] text-[#3a4060] bg-[#10121e] px-2 py-0.5 rounded">{topic.readingMinutes}m</span>
+                <div className={`w-2 h-2 rounded-full flex-shrink-0 ${
+                  isUnderstood ? 'bg-[#28A745]' : entry ? 'bg-[#D97C4A]' : 'bg-[#D2D2D7]'
+                }`} />
+                <span className="text-sm font-medium text-[#1D1D1F] flex-1">{topic.label}</span>
+                <span className="text-[11px] text-[#6E6E73] bg-[#F5F5F7] px-2 py-0.5 rounded-md">{topic.readingMinutes}m</span>
                 {entry && (
-                  <span className={`text-[10px] font-['JetBrains_Mono'] px-2 py-0.5 rounded font-bold ${isUnderstood ? 'bg-[#0a1a0c] text-[#50c878] border border-[#1a3820]' : 'bg-[#1a1008] text-[#d97c4a] border border-[#3a2010]'}`}>
-                    {isUnderstood ? 'UNDERSTOOD' : 'HARVESTED'}
+                  <span className={`text-[11px] font-semibold px-2.5 py-0.5 rounded-full ${
+                    isUnderstood
+                      ? 'bg-[#E8F8EE] text-[#28A745]'
+                      : 'bg-[#FEF3EC] text-[#D97C4A]'
+                  }`}>
+                    {isUnderstood ? 'Understood' : 'Harvested'}
                   </span>
                 )}
-                {isHarvesting && <span className="text-[10px] font-['JetBrains_Mono'] text-[#70cc30] animate-pulse">PROCESSING</span>}
+                {isHarvesting && (
+                  <span className="text-[11px] font-semibold text-[#D97C4A] animate-pulse">Processing...</span>
+                )}
               </div>
 
               {isExpanded && entry && (
-                <div className="border-t border-[#13162a] px-4 pb-4">
+                <div className="border-t border-[#F5F5F7] px-5 pb-5">
                   <div
-                    className="prose-content text-sm leading-7 text-[#7080a8] mt-3"
+                    className="prose-content text-sm leading-7 mt-4"
                     dangerouslySetInnerHTML={{ __html: renderMd(entry.content) }}
                   />
-                  <div className="flex gap-2 mt-4 items-center">
+                  <div className="flex gap-2 mt-5 items-center">
                     <button
                       onClick={() => harvestTopic(topic.id, topic.sourceId)}
                       disabled={isHarvesting}
-                      className="px-3 py-1.5 rounded-md border border-[#1e2238] bg-[#10121e] text-[#5a6080] text-xs font-semibold hover:border-[#d97c4a] hover:text-[#d97c4a] disabled:opacity-30 transition-all"
+                      className="px-3 py-1.5 rounded-xl border border-[#D2D2D7] bg-[#F5F5F7] text-[#6E6E73] text-xs font-semibold hover:border-[#D97C4A] hover:text-[#D97C4A] disabled:opacity-30 transition-all"
                     >
                       Re-harvest
                     </button>
-                    <InfoTooltip text="Calls Anthropic API to generate a structured lesson from official docs. Saves automatically — no re-generating needed." position="top" />
+                    <InfoTooltip
+                      text="Calls Anthropic API to generate a structured lesson from official docs. Saves automatically — no re-generating needed."
+                      position="top"
+                    />
                     <button
                       onClick={() => markUnderstood(topic.id, !isUnderstood)}
-                      className={`px-3 py-1.5 rounded-md border text-xs font-semibold transition-all ${isUnderstood ? 'border-[#50c87840] text-[#50c878] bg-[#0a140c]' : 'border-[#1e2238] bg-[#10121e] text-[#5a6080] hover:border-[#50c87880] hover:text-[#50c878]'}`}
+                      className={`px-3 py-1.5 rounded-xl border text-xs font-semibold transition-all ml-1 ${
+                        isUnderstood
+                          ? 'border-[#28A745] text-[#28A745] bg-[#E8F8EE]'
+                          : 'border-[#D2D2D7] bg-[#F5F5F7] text-[#6E6E73] hover:border-[#28A745] hover:text-[#28A745]'
+                      }`}
                     >
-                      {isUnderstood ? 'Understood' : 'Mark Understood'}
+                      {isUnderstood ? '✓ Understood' : 'Mark Understood'}
                     </button>
                   </div>
                 </div>
               )}
 
               {!entry && !isHarvesting && (
-                <div className="border-t border-[#13162a] px-4 py-3">
-                  {err && <div className="text-xs font-['JetBrains_Mono'] text-[#e07070] bg-[#150c0c] border border-[#3a1a1a] rounded px-3 py-2 mb-2">{err}</div>}
+                <div className="border-t border-[#F5F5F7] px-5 py-3">
+                  {err && (
+                    <div className="text-xs text-[#D94040] bg-[#FEF0F0] border border-[#F5C5C5] rounded-xl px-3 py-2 mb-2">
+                      {err}
+                    </div>
+                  )}
                   <div className="flex items-center gap-1.5">
                     <button
                       onClick={() => harvestTopic(topic.id, topic.sourceId)}
                       disabled={isHarvesting}
-                      className="flex-1 py-2 rounded-md border border-[#1e2238] bg-[#10121e] text-[#5a6080] text-xs font-semibold hover:border-[#d97c4a] hover:text-[#d97c4a] hover:bg-[#14100a] disabled:opacity-30 transition-all"
+                      className="flex-1 py-2 rounded-xl border border-[#D2D2D7] bg-[#F5F5F7] text-[#1D1D1F] text-xs font-semibold hover:border-[#D97C4A] hover:text-[#D97C4A] disabled:opacity-30 transition-all"
                     >
                       Harvest Topic
                     </button>
-                    <InfoTooltip text="Calls Anthropic API to generate a structured lesson from official docs. Saves automatically — no re-generating needed." position="top" />
+                    <InfoTooltip
+                      text="Calls Anthropic API to generate a structured lesson from official docs. Saves automatically — no re-generating needed."
+                      position="top"
+                    />
                   </div>
                 </div>
               )}

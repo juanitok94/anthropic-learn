@@ -29,13 +29,16 @@ export default function KnowledgeBasePage() {
     <main className="max-w-3xl mx-auto px-8 py-10 flex flex-col gap-6">
       <div className="flex items-start justify-between gap-4">
         <div>
-          <h1 className="font-['Syne'] font-extrabold text-[28px] tracking-tight text-white leading-none">
-            Knowledge <span className="text-[#d97c4a]">Base</span>
+          <h1 className="font-['Syne'] font-extrabold text-[28px] tracking-tight text-[#1D1D1F] leading-none">
+            Knowledge <span className="text-[#D97C4A]">Base</span>
           </h1>
-          <p className="text-[#4a5070] text-sm mt-2">{entries.length} docs harvested</p>
+          <p className="text-[#6E6E73] text-sm mt-2">{entries.length} docs harvested</p>
         </div>
         {entries.length > 0 && (
-          <button onClick={exportMarkdown} className="px-4 py-2 rounded-lg border border-[#1a1e30] bg-[#0d0f1c] text-[#5a6080] text-xs font-semibold hover:border-[#d97c4a] hover:text-[#d97c4a] transition-all self-start">
+          <button
+            onClick={exportMarkdown}
+            className="px-4 py-2 rounded-xl border border-[#D2D2D7] bg-white text-[#1D1D1F] text-xs font-semibold shadow-[0_2px_8px_rgba(0,0,0,0.06)] hover:border-[#D97C4A] hover:text-[#D97C4A] transition-all self-start"
+          >
             Export All MD
           </button>
         )}
@@ -47,38 +50,38 @@ export default function KnowledgeBasePage() {
           placeholder="Search knowledge base..."
           value={search}
           onChange={e => setSearch(e.target.value)}
-          className="w-full px-3 py-2 rounded-lg border border-[#1a1e30] bg-[#0d0f1c] text-[#c0c8e0] text-sm placeholder-[#2a3050] outline-none focus:border-[#d97c4a40]"
+          className="w-full px-4 py-2.5 rounded-xl border border-[#D2D2D7] bg-white text-[#1D1D1F] text-sm placeholder-[#6E6E73] outline-none focus:border-[#D97C4A] shadow-[0_2px_8px_rgba(0,0,0,0.06)] transition-all"
         />
       )}
 
       {!loaded || entries.length === 0 ? (
-        <div className="flex flex-col items-center justify-center py-16 gap-3 text-center">
-          <div className="text-4xl opacity-20">+</div>
-          <div className="text-[15px] font-semibold text-[#3a4060] font-['Syne']">No content yet</div>
-          <div className="text-xs text-[#2a3050] max-w-xs leading-relaxed">Visit the Curriculum page and harvest topics to build your knowledge base.</div>
+        <div className="flex flex-col items-center justify-center py-20 gap-3 text-center">
+          <div className="text-5xl">📚</div>
+          <div className="text-[15px] font-semibold text-[#1D1D1F] font-['Syne'] mt-2">No content yet</div>
+          <div className="text-sm text-[#6E6E73] max-w-xs leading-relaxed">Visit the Curriculum page and harvest topics to build your knowledge base.</div>
         </div>
       ) : filtered.length === 0 ? (
-        <div className="text-sm text-[#3a4060] text-center py-8">No results for &quot;{search}&quot;</div>
+        <div className="text-sm text-[#6E6E73] text-center py-8">No results for &quot;{search}&quot;</div>
       ) : (
         <div className="flex flex-col gap-3">
           {filtered.map(entry => (
-            <div key={entry.sourceId} className="bg-[#0c0e1a] border border-[#13162a] rounded-xl overflow-hidden">
+            <div key={entry.sourceId} className="bg-white rounded-2xl overflow-hidden shadow-[0_2px_12px_rgba(0,0,0,0.08)]">
               <div
-                className="flex items-center gap-2.5 px-4 py-3.5 cursor-pointer hover:bg-[#0f1120] transition-colors"
+                className="flex items-center gap-3 px-5 py-4 cursor-pointer hover:bg-[#F5F5F7] transition-colors"
                 onClick={() => setExpanded(p => ({ ...p, [entry.sourceId]: !p[entry.sourceId] }))}
               >
-                <div className="w-1.5 h-1.5 rounded-full bg-[#50c878] flex-shrink-0" />
-                <span className="text-sm font-medium text-[#c0c8e0] flex-1">{entry.label}</span>
-                <span className="text-[10px] font-['JetBrains_Mono'] text-[#3a4060] bg-[#10121e] px-2 py-0.5 rounded">{entry.level}</span>
-                <span className="text-[10px] font-['JetBrains_Mono'] text-[#3a4060]">{expanded[entry.sourceId] ? '▲' : '▼'}</span>
+                <div className="w-2 h-2 rounded-full bg-[#28A745] flex-shrink-0" />
+                <span className="text-sm font-medium text-[#1D1D1F] flex-1">{entry.label}</span>
+                <span className="text-[11px] text-[#6E6E73] bg-[#F5F5F7] px-2 py-0.5 rounded-md">{entry.level}</span>
+                <span className="text-[#6E6E73] text-xs">{expanded[entry.sourceId] ? '▲' : '▼'}</span>
               </div>
               {expanded[entry.sourceId] && (
-                <div className="border-t border-[#13162a] px-4 pb-4">
+                <div className="border-t border-[#F5F5F7] px-5 pb-5">
                   <div
-                    className="prose-content text-sm leading-7 text-[#7080a8] mt-3"
+                    className="prose-content text-sm leading-7 mt-4"
                     dangerouslySetInnerHTML={{ __html: renderMd(entry.content) }}
                   />
-                  <div className="mt-3 text-[10px] font-['JetBrains_Mono'] text-[#2a3050]">
+                  <div className="mt-4 text-[11px] text-[#6E6E73]">
                     Harvested: {new Date(entry.harvestedAt).toLocaleDateString()} · Mode: {entry.mode}
                   </div>
                 </div>

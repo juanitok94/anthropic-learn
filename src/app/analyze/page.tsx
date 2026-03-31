@@ -85,27 +85,35 @@ export default function AnalyzePage() {
   return (
     <main className="max-w-3xl mx-auto px-8 py-10 flex flex-col gap-6">
       <div>
-        <h1 className="font-['Syne'] font-extrabold text-[28px] tracking-tight text-white leading-none">
-          Transcript <span className="text-[#d97c4a]">Analyzer</span>
+        <h1 className="font-['Syne'] font-extrabold text-[28px] tracking-tight text-[#1D1D1F] leading-none">
+          Transcript <span className="text-[#D97C4A]">Analyzer</span>
         </h1>
-        <p className="text-[#4a5070] text-sm mt-2">{transcript.title}</p>
+        <p className="text-[#6E6E73] text-sm mt-2">{transcript.title}</p>
       </div>
 
-      {/* Progress bar */}
-      <div className="bg-[#0c0e1a] border border-[#13162a] rounded-xl p-4">
+      {/* Progress card */}
+      <div className="bg-white rounded-2xl p-5 shadow-[0_2px_12px_rgba(0,0,0,0.08)]">
         <div className="flex items-center justify-between mb-3">
-          <div className="text-xs font-['JetBrains_Mono'] text-[#3a4060]">{analyzedCount} / {totalChunks} sections analyzed</div>
-          <div className={`text-[10px] font-['JetBrains_Mono'] px-2 py-0.5 rounded font-semibold ${processing ? 'bg-[#101a08] border border-[#2a4a10] text-[#70cc30] animate-pulse' : analyzedCount === totalChunks ? 'bg-[#0c1a10] border border-[#1a3820] text-[#50c878]' : 'bg-[#10121c] border border-[#1e2238] text-[#3a4060]'}`}>
+          <div className="text-sm text-[#6E6E73]">{analyzedCount} / {totalChunks} sections analyzed</div>
+          <div className={`text-[11px] font-semibold px-2.5 py-0.5 rounded-full ${
+            processing
+              ? 'bg-[#E8F8EE] text-[#28A745]'
+              : analyzedCount === totalChunks
+              ? 'bg-[#E8F8EE] text-[#28A745]'
+              : 'bg-[#F5F5F7] text-[#6E6E73]'
+          }`}>
             {processing ? 'RUNNING' : analyzedCount === totalChunks ? 'DONE' : 'IDLE'}
           </div>
         </div>
-        <div className="h-1 bg-[#13162a] rounded overflow-hidden mb-4">
-          <div className="h-full bg-gradient-to-r from-[#d97c4a] to-[#e8a06a] rounded transition-all" style={{ width: `${totalChunks ? (analyzedCount / totalChunks) * 100 : 0}%` }} />
+        <div className="h-1.5 bg-[#E8E8ED] rounded-full overflow-hidden mb-5">
+          <div className="h-full bg-gradient-to-r from-[#D97C4A] to-[#E8A06A] rounded-full transition-all" style={{ width: `${totalChunks ? (analyzedCount / totalChunks) * 100 : 0}%` }} />
         </div>
         <button
           onClick={runningAll ? () => { stopRef.current = true; setRunningAll(false); } : analyzeAll}
           disabled={!runningAll && analyzedCount === totalChunks}
-          className={`w-full py-3 rounded-lg font-['Syne'] font-bold text-sm text-white transition-opacity disabled:opacity-35 disabled:cursor-not-allowed ${runningAll ? 'bg-gradient-to-r from-[#c04040] to-[#903030]' : 'bg-gradient-to-r from-[#d97c4a] to-[#c06030]'} hover:opacity-90`}
+          className={`w-full py-3 rounded-xl font-['Syne'] font-bold text-sm text-white transition-opacity disabled:opacity-35 disabled:cursor-not-allowed ${
+            runningAll ? 'bg-[#D94040]' : 'bg-[#D97C4A]'
+          } hover:opacity-90`}
         >
           {runningAll ? 'Stop' : 'Analyze All Sections'}
         </button>
@@ -120,36 +128,50 @@ export default function AnalyzePage() {
           const err = errors[chunk.id];
 
           return (
-            <div key={chunk.id} className="bg-[#0c0e1a] border border-[#13162a] rounded-xl overflow-hidden">
+            <div key={chunk.id} className="bg-white rounded-2xl overflow-hidden shadow-[0_2px_12px_rgba(0,0,0,0.08)]">
               <div
-                className="flex items-center gap-2.5 px-4 py-3.5 cursor-pointer hover:bg-[#0f1120] transition-colors"
+                className="flex items-center gap-3 px-5 py-4 cursor-pointer hover:bg-[#F5F5F7] transition-colors"
                 onClick={() => analysis && setExpanded(p => ({ ...p, [chunk.id]: !p[chunk.id] }))}
               >
-                <div className={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${analysis ? 'bg-[#50c878]' : isProcessing ? 'bg-[#70cc30] animate-pulse' : 'bg-[#2a3050]'}`} />
+                <div className={`w-2 h-2 rounded-full flex-shrink-0 ${
+                  analysis ? 'bg-[#28A745]' : isProcessing ? 'bg-[#D97C4A] animate-pulse' : 'bg-[#D2D2D7]'
+                }`} />
                 <div className="flex-1">
-                  <div className="text-sm font-medium text-[#c0c8e0]">{chunk.title}</div>
-                  <div className="text-[10px] font-['JetBrains_Mono'] text-[#3a4060] mt-0.5">{chunk.timestamp}</div>
+                  <div className="text-sm font-medium text-[#1D1D1F]">{chunk.title}</div>
+                  <div className="text-[11px] text-[#6E6E73] mt-0.5">{chunk.timestamp}</div>
                 </div>
-                {analysis && <span className="text-[10px] font-['JetBrains_Mono'] text-[#50c878] bg-[#0a1a0c] border border-[#1a3820] px-2 py-0.5 rounded">ANALYZED</span>}
-                {isProcessing && <span className="text-[10px] font-['JetBrains_Mono'] text-[#70cc30] animate-pulse">ANALYZING...</span>}
+                {analysis && (
+                  <span className="text-[11px] font-semibold text-[#28A745] bg-[#E8F8EE] px-2.5 py-0.5 rounded-full">
+                    Analyzed
+                  </span>
+                )}
+                {isProcessing && (
+                  <span className="text-[11px] font-semibold text-[#D97C4A] animate-pulse">
+                    Analyzing...
+                  </span>
+                )}
               </div>
 
               {isExpanded && analysis && (
-                <div className="border-t border-[#13162a] px-4 pb-4">
+                <div className="border-t border-[#F5F5F7] px-5 pb-5">
                   <div
-                    className="prose-content text-sm leading-7 text-[#7080a8] mt-3"
+                    className="prose-content text-sm leading-7 mt-4"
                     dangerouslySetInnerHTML={{ __html: renderMd(analysis.raw) }}
                   />
                 </div>
               )}
 
               {!analysis && !isProcessing && (
-                <div className="border-t border-[#13162a] px-4 py-3">
-                  {err && <div className="text-xs font-['JetBrains_Mono'] text-[#e07070] bg-[#150c0c] border border-[#3a1a1a] rounded px-3 py-2 mb-2">{err}</div>}
+                <div className="border-t border-[#F5F5F7] px-5 py-3">
+                  {err && (
+                    <div className="text-xs text-[#D94040] bg-[#FEF0F0] border border-[#F5C5C5] rounded-xl px-3 py-2 mb-2">
+                      {err}
+                    </div>
+                  )}
                   <button
                     onClick={() => analyzeChunk(chunk)}
                     disabled={!!processing}
-                    className="w-full py-2 rounded-md border border-[#1e2238] bg-[#10121e] text-[#5a6080] text-xs font-semibold hover:border-[#d97c4a] hover:text-[#d97c4a] disabled:opacity-30 transition-all"
+                    className="w-full py-2 rounded-xl border border-[#D2D2D7] bg-[#F5F5F7] text-[#1D1D1F] text-xs font-semibold hover:border-[#D97C4A] hover:text-[#D97C4A] disabled:opacity-40 disabled:cursor-not-allowed transition-all"
                   >
                     Analyze Section
                   </button>
