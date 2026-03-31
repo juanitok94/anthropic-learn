@@ -1,0 +1,74 @@
+{
+  "lastUpdated": "2026-03-30",
+  "sections": {
+    "Models & Pricing": [
+      { "id": "models-overview", "label": "Models Overview", "url": "https://docs.anthropic.com/en/docs/about-claude/models/overview", "harvested": false, "harvestedAt": null, "version": null },
+      { "id": "choosing-a-model", "label": "Choosing a Model", "url": "https://docs.anthropic.com/en/docs/about-claude/models/choosing-a-model", "harvested": false, "harvestedAt": null, "version": null },
+      { "id": "model-deprecations", "label": "Model Deprecations", "url": "https://docs.anthropic.com/en/docs/about-claude/model-deprecations", "harvested": false, "harvestedAt": null, "version": null },
+      { "id": "pricing", "label": "Pricing", "url": "https://docs.anthropic.com/en/docs/about-claude/pricing", "harvested": false, "harvestedAt": null, "version": null }
+    ],
+    "Prompt Engineering": [
+      { "id": "pe-overview", "label": "Overview", "url": "https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview", "harvested": false, "harvestedAt": null, "version": null },
+      { "id": "pe-best-practices", "label": "Claude 4 Best Practices", "url": "https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/claude-4-best-practices", "harvested": false, "harvestedAt": null, "version": null },
+      { "id": "pe-clear-direct", "label": "Be Clear and Direct", "url": "https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/be-clear-and-direct", "harvested": false, "harvestedAt": null, "version": null },
+      { "id": "pe-multishot", "label": "Multishot Prompting", "url": "https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/multishot-prompting", "harvested": false, "harvestedAt": null, "version": null },
+      { "id": "pe-cot", "label": "Chain of Thought", "url": "https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/chain-of-thought", "harvested": false, "harvestedAt": null, "version": null },
+      { "id": "pe-xml-tags", "label": "Use XML Tags", "url": "https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/use-xml-tags", "harvested": false, "harvestedAt": null, "version": null },
+      { "id": "pe-system-prompts", "label": "System Prompts", "url": "https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/system-prompts", "harvested": false, "harvestedAt": null, "version": null },
+      { "id": "pe-prefill", "label": "Prefill Claude's Response", "url": "https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/prefill-claudes-response", "harvested": false, "harvestedAt": null, "version": null },
+      { "id": "pe-chain-prompts", "label": "Chain Complex Prompts", "url": "https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/chain-prompts", "harvested": false, "harvestedAt": null, "version": null },
+      { "id": "pe-long-context", "label": "Long Context Tips", "url": "https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/long-context-tips", "harvested": false, "harvestedAt": null, "version": null },
+      { "id": "pe-extended-thinking", "label": "Extended Thinking Tips", "url": "https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/extended-thinking-tips", "harvested": false, "harvestedAt": null, "version": null }
+    ],
+    "Tool Use": [
+      { "id": "tool-overview", "label": "Tool Use Overview", "url": "https://docs.anthropic.com/en/docs/agents-and-tools/tool-use/overview", "harvested": false, "harvestedAt": null, "version": null },
+      { "id": "tool-implement", "label": "Implement Tool Use", "url": "https://docs.anthropic.com/en/docs/agents-and-tools/tool-use/implement-tool-use", "harvested": false, "harvestedAt": null, "version": null },
+      { "id": "tool-web-search", "label": "Web Search Tool", "url": "https://docs.anthropic.com/en/docs/agents-and-tools/tool-use/web-search-tool", "harvested": false, "harvestedAt": null, "version": null },
+      { "id": "tool-computer-use", "label": "Computer Use Tool", "url": "https://docs.anthropic.com/en/docs/agents-and-tools/tool-use/computer-use-tool", "harvested": false, "harvestedAt": null, "version": null },
+      { "id": "tool-code-execution", "label": "Code Execution Tool", "url": "https://docs.anthropic.com/en/docs/agents-and-tools/tool-use/code-execution-tool", "harvested": false, "harvestedAt": null, "version": null },
+      { "id": "tool-memory", "label": "Memory Tool", "url": "https://docs.anthropic.com/en/docs/agents-and-tools/tool-use/memory-tool", "harvested": false, "harvestedAt": null, "version": null }
+    ],
+    "Capabilities": [
+      { "id": "cap-overview", "label": "Features Overview", "url": "https://docs.anthropic.com/en/docs/build-with-claude/overview", "harvested": false, "harvestedAt": null, "version": null },
+      { "id": "cap-extended-thinking", "label": "Extended Thinking", "url": "https://docs.anthropic.com/en/docs/build-with-claude/extended-thinking", "harvested": false, "harvestedAt": null, "version": null },
+      { "id": "cap-structured-outputs", "label": "Structured Outputs", "url": "https://docs.anthropic.com/en/docs/build-with-claude/structured-outputs", "harvested": false, "harvestedAt": null, "version": null },
+      { "id": "cap-vision", "label": "Vision", "url": "https://docs.anthropic.com/en/docs/build-with-claude/vision", "harvested": false, "harvestedAt": null, "version": null },
+      { "id": "cap-prompt-caching", "label": "Prompt Caching", "url": "https://docs.anthropic.com/en/docs/build-with-claude/prompt-caching", "harvested": false, "harvestedAt": null, "version": null },
+      { "id": "cap-citations", "label": "Citations", "url": "https://docs.anthropic.com/en/docs/build-with-claude/citations", "harvested": false, "harvestedAt": null, "version": null },
+      { "id": "cap-batch", "label": "Batch Processing", "url": "https://docs.anthropic.com/en/docs/build-with-claude/batch-processing", "harvested": false, "harvestedAt": null, "version": null },
+      { "id": "cap-context-windows", "label": "Context Windows", "url": "https://docs.anthropic.com/en/docs/build-with-claude/context-windows", "harvested": false, "harvestedAt": null, "version": null },
+      { "id": "cap-files", "label": "Files API", "url": "https://docs.anthropic.com/en/docs/build-with-claude/files", "harvested": false, "harvestedAt": null, "version": null }
+    ],
+    "Agents & MCP": [
+      { "id": "agent-skills", "label": "Agent Skills Overview", "url": "https://docs.anthropic.com/en/docs/agents-and-tools/agent-skills/overview", "harvested": false, "harvestedAt": null, "version": null },
+      { "id": "agent-sdk", "label": "Agent SDK Overview", "url": "https://docs.anthropic.com/en/docs/agent-sdk/overview", "harvested": false, "harvestedAt": null, "version": null },
+      { "id": "agent-mcp", "label": "MCP Connector", "url": "https://docs.anthropic.com/en/docs/agents-and-tools/mcp-connector", "harvested": false, "harvestedAt": null, "version": null }
+    ],
+    "Test & Guardrails": [
+      { "id": "test-success", "label": "Define Success Criteria", "url": "https://docs.anthropic.com/en/docs/test-and-evaluate/define-success", "harvested": false, "harvestedAt": null, "version": null },
+      { "id": "test-hallucinations", "label": "Reduce Hallucinations", "url": "https://docs.anthropic.com/en/docs/test-and-evaluate/strengthen-guardrails/reduce-hallucinations", "harvested": false, "harvestedAt": null, "version": null },
+      { "id": "test-consistency", "label": "Increase Consistency", "url": "https://docs.anthropic.com/en/docs/test-and-evaluate/strengthen-guardrails/increase-consistency", "harvested": false, "harvestedAt": null, "version": null },
+      { "id": "test-jailbreaks", "label": "Mitigate Jailbreaks", "url": "https://docs.anthropic.com/en/docs/test-and-evaluate/strengthen-guardrails/mitigate-jailbreaks", "harvested": false, "harvestedAt": null, "version": null }
+    ],
+    "Prompt Library": [
+      { "id": "prompt-library", "label": "Prompt Library", "url": "https://docs.anthropic.com/en/prompt-library/library", "harvested": false, "harvestedAt": null, "version": null }
+    ],
+    "Claude's Character": [
+      { "id": "claude-character", "label": "Claude's Character & Values", "url": "https://www.anthropic.com/news/claude-character", "harvested": false, "harvestedAt": null, "version": null },
+      { "id": "claude-constitution", "label": "Claude's Constitution", "url": "https://www.anthropic.com/news/claudes-constitution", "harvested": false, "harvestedAt": null, "version": null }
+    ],
+    "Release Notes": [
+      { "id": "release-notes", "label": "Platform Release Notes", "url": "https://docs.anthropic.com/en/release-notes/overview", "harvested": false, "harvestedAt": null, "version": null }
+    ],
+    "Business Applications": [
+      { "id": "biz-content", "label": "Content & Copywriting Automation", "url": "https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview", "bizTopic": true, "harvested": false, "harvestedAt": null, "version": null },
+      { "id": "biz-docs", "label": "Document Processing & Extraction", "url": "https://docs.anthropic.com/en/docs/build-with-claude/files", "bizTopic": true, "harvested": false, "harvestedAt": null, "version": null },
+      { "id": "biz-support", "label": "Customer Support Automation", "url": "https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/system-prompts", "bizTopic": true, "harvested": false, "harvestedAt": null, "version": null },
+      { "id": "biz-data", "label": "Data Analysis & Reporting", "url": "https://docs.anthropic.com/en/docs/build-with-claude/structured-outputs", "bizTopic": true, "harvested": false, "harvestedAt": null, "version": null },
+      { "id": "biz-leads", "label": "Lead Generation & Outreach", "url": "https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/multishot-prompting", "bizTopic": true, "harvested": false, "harvestedAt": null, "version": null },
+      { "id": "biz-workflow", "label": "Workflow & Process Automation", "url": "https://docs.anthropic.com/en/docs/agents-and-tools/tool-use/overview", "bizTopic": true, "harvested": false, "harvestedAt": null, "version": null },
+      { "id": "biz-pricing", "label": "Pricing Your AI Services", "url": "https://docs.anthropic.com/en/docs/about-claude/pricing", "bizTopic": true, "harvested": false, "harvestedAt": null, "version": null },
+      { "id": "biz-pitch", "label": "Pitching Clients on AI", "url": "https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview", "bizTopic": true, "harvested": false, "harvestedAt": null, "version": null }
+    ]
+  }
+}

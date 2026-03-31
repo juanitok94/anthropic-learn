@@ -1,0 +1,185 @@
+{
+  "levels": ["Beginner", "Intermediate", "Advanced"],
+  "levelColors": {
+    "Beginner": "#50c878",
+    "Intermediate": "#d97c4a",
+    "Advanced": "#7090e8"
+  },
+  "modules": [
+    {
+      "id": "what-is-claude",
+      "title": "What Is Claude?",
+      "level": "Beginner",
+      "type": "technical",
+      "order": 1,
+      "topics": [
+        { "id": "models-overview", "label": "Models Overview", "sourceId": "models-overview", "transcriptRefs": [], "readingMinutes": 5 },
+        { "id": "claude-character", "label": "Claude's Character & Values", "sourceId": "claude-character", "transcriptRefs": [], "readingMinutes": 4 },
+        { "id": "cap-overview", "label": "Features Overview", "sourceId": "cap-overview", "transcriptRefs": [], "readingMinutes": 5 }
+      ]
+    },
+    {
+      "id": "first-prompts",
+      "title": "Your First Prompts",
+      "level": "Beginner",
+      "type": "technical",
+      "order": 2,
+      "topics": [
+        { "id": "pe-overview", "label": "Prompt Engineering Overview", "sourceId": "pe-overview", "transcriptRefs": ["nick-saraev-advanced:claude_md"], "readingMinutes": 6 },
+        { "id": "pe-clear-direct", "label": "Be Clear and Direct", "sourceId": "pe-clear-direct", "transcriptRefs": [], "readingMinutes": 4 },
+        { "id": "pe-system-prompts", "label": "System Prompts", "sourceId": "pe-system-prompts", "transcriptRefs": ["nick-saraev-advanced:claude_md"], "readingMinutes": 5 }
+      ]
+    },
+    {
+      "id": "getting-results",
+      "title": "Getting Results",
+      "level": "Beginner",
+      "type": "technical",
+      "order": 3,
+      "topics": [
+        { "id": "pe-multishot", "label": "Multishot Prompting", "sourceId": "pe-multishot", "transcriptRefs": [], "readingMinutes": 5 },
+        { "id": "pe-xml-tags", "label": "Use XML Tags", "sourceId": "pe-xml-tags", "transcriptRefs": [], "readingMinutes": 4 },
+        { "id": "prompt-library", "label": "Prompt Library", "sourceId": "prompt-library", "transcriptRefs": [], "readingMinutes": 3 }
+      ]
+    },
+    {
+      "id": "biz-beginner",
+      "title": "Business Applications",
+      "level": "Beginner",
+      "type": "business",
+      "order": 4,
+      "topics": [
+        { "id": "biz-content", "label": "Content & Copywriting Automation", "sourceId": "biz-content", "transcriptRefs": [], "readingMinutes": 5 },
+        { "id": "biz-support", "label": "Customer Support Automation", "sourceId": "biz-support", "transcriptRefs": [], "readingMinutes": 5 },
+        { "id": "biz-pitch", "label": "Pitching Clients on AI", "sourceId": "biz-pitch", "transcriptRefs": [], "readingMinutes": 5 }
+      ]
+    },
+    {
+      "id": "advanced-prompting",
+      "title": "Advanced Prompting",
+      "level": "Intermediate",
+      "type": "technical",
+      "order": 5,
+      "topics": [
+        { "id": "pe-cot", "label": "Chain of Thought", "sourceId": "pe-cot", "transcriptRefs": [], "readingMinutes": 6 },
+        { "id": "pe-prefill", "label": "Prefill Claude's Response", "sourceId": "pe-prefill", "transcriptRefs": [], "readingMinutes": 4 },
+        { "id": "pe-chain-prompts", "label": "Chain Complex Prompts", "sourceId": "pe-chain-prompts", "transcriptRefs": [], "readingMinutes": 5 },
+        { "id": "pe-best-practices", "label": "Claude 4 Best Practices", "sourceId": "pe-best-practices", "transcriptRefs": [], "readingMinutes": 7 }
+      ]
+    },
+    {
+      "id": "working-with-data",
+      "title": "Working with Data",
+      "level": "Intermediate",
+      "type": "technical",
+      "order": 6,
+      "topics": [
+        { "id": "cap-structured-outputs", "label": "Structured Outputs", "sourceId": "cap-structured-outputs", "transcriptRefs": [], "readingMinutes": 6 },
+        { "id": "cap-citations", "label": "Citations", "sourceId": "cap-citations", "transcriptRefs": [], "readingMinutes": 4 },
+        { "id": "cap-vision", "label": "Vision", "sourceId": "cap-vision", "transcriptRefs": [], "readingMinutes": 5 },
+        { "id": "cap-context-windows", "label": "Context Windows", "sourceId": "cap-context-windows", "transcriptRefs": ["nick-saraev-advanced:parallelization"], "readingMinutes": 5 }
+      ]
+    },
+    {
+      "id": "tools-apis",
+      "title": "Tools & APIs",
+      "level": "Intermediate",
+      "type": "technical",
+      "order": 7,
+      "topics": [
+        { "id": "tool-overview", "label": "Tool Use Overview", "sourceId": "tool-overview", "transcriptRefs": ["nick-saraev-advanced:browser_automation"], "readingMinutes": 7 },
+        { "id": "tool-implement", "label": "Implement Tool Use", "sourceId": "tool-implement", "transcriptRefs": [], "readingMinutes": 8 },
+        { "id": "tool-web-search", "label": "Web Search Tool", "sourceId": "tool-web-search", "transcriptRefs": [], "readingMinutes": 5 },
+        { "id": "cap-files", "label": "Files API", "sourceId": "cap-files", "transcriptRefs": [], "readingMinutes": 5 }
+      ]
+    },
+    {
+      "id": "quality-reliability",
+      "title": "Quality & Reliability",
+      "level": "Intermediate",
+      "type": "technical",
+      "order": 8,
+      "topics": [
+        { "id": "test-hallucinations", "label": "Reduce Hallucinations", "sourceId": "test-hallucinations", "transcriptRefs": [], "readingMinutes": 5 },
+        { "id": "test-consistency", "label": "Increase Consistency", "sourceId": "test-consistency", "transcriptRefs": [], "readingMinutes": 5 },
+        { "id": "test-success", "label": "Define Success Criteria", "sourceId": "test-success", "transcriptRefs": [], "readingMinutes": 5 }
+      ]
+    },
+    {
+      "id": "biz-intermediate",
+      "title": "Business Applications",
+      "level": "Intermediate",
+      "type": "business",
+      "order": 9,
+      "topics": [
+        { "id": "biz-docs", "label": "Document Processing & Extraction", "sourceId": "biz-docs", "transcriptRefs": [], "readingMinutes": 5 },
+        { "id": "biz-data", "label": "Data Analysis & Reporting", "sourceId": "biz-data", "transcriptRefs": [], "readingMinutes": 5 },
+        { "id": "biz-leads", "label": "Lead Generation & Outreach", "sourceId": "biz-leads", "transcriptRefs": [], "readingMinutes": 5 },
+        { "id": "biz-pricing", "label": "Pricing Your AI Services", "sourceId": "biz-pricing", "transcriptRefs": [], "readingMinutes": 5 }
+      ]
+    },
+    {
+      "id": "production-optimization",
+      "title": "Production Optimization",
+      "level": "Advanced",
+      "type": "technical",
+      "order": 10,
+      "topics": [
+        { "id": "cap-prompt-caching", "label": "Prompt Caching", "sourceId": "cap-prompt-caching", "transcriptRefs": [], "readingMinutes": 7 },
+        { "id": "cap-batch", "label": "Batch Processing", "sourceId": "cap-batch", "transcriptRefs": [], "readingMinutes": 6 },
+        { "id": "pe-long-context", "label": "Long Context Tips", "sourceId": "pe-long-context", "transcriptRefs": [], "readingMinutes": 5 },
+        { "id": "pricing", "label": "Pricing", "sourceId": "pricing", "transcriptRefs": [], "readingMinutes": 5 }
+      ]
+    },
+    {
+      "id": "agentic-systems",
+      "title": "Agentic Systems",
+      "level": "Advanced",
+      "type": "technical",
+      "order": 11,
+      "topics": [
+        { "id": "agent-skills", "label": "Agent Skills Overview", "sourceId": "agent-skills", "transcriptRefs": ["nick-saraev-advanced:skills_subagents"], "readingMinutes": 7 },
+        { "id": "agent-sdk", "label": "Agent SDK Overview", "sourceId": "agent-sdk", "transcriptRefs": ["nick-saraev-advanced:agent_harnesses"], "readingMinutes": 8 },
+        { "id": "agent-mcp", "label": "MCP Connector", "sourceId": "agent-mcp", "transcriptRefs": [], "readingMinutes": 6 },
+        { "id": "cap-extended-thinking", "label": "Extended Thinking", "sourceId": "cap-extended-thinking", "transcriptRefs": [], "readingMinutes": 8 },
+        { "id": "pe-extended-thinking", "label": "Extended Thinking Tips", "sourceId": "pe-extended-thinking", "transcriptRefs": [], "readingMinutes": 6 }
+      ]
+    },
+    {
+      "id": "security-guardrails",
+      "title": "Security & Guardrails",
+      "level": "Advanced",
+      "type": "technical",
+      "order": 12,
+      "topics": [
+        { "id": "test-jailbreaks", "label": "Mitigate Jailbreaks", "sourceId": "test-jailbreaks", "transcriptRefs": ["nick-saraev-advanced:security"], "readingMinutes": 6 },
+        { "id": "claude-constitution", "label": "Claude's Constitution", "sourceId": "claude-constitution", "transcriptRefs": [], "readingMinutes": 8 }
+      ]
+    },
+    {
+      "id": "staying-current",
+      "title": "Staying Current",
+      "level": "Advanced",
+      "type": "technical",
+      "order": 13,
+      "topics": [
+        { "id": "release-notes", "label": "Platform Release Notes", "sourceId": "release-notes", "transcriptRefs": [], "readingMinutes": 5 },
+        { "id": "model-deprecations", "label": "Model Deprecations", "sourceId": "model-deprecations", "transcriptRefs": [], "readingMinutes": 4 },
+        { "id": "choosing-a-model", "label": "Choosing a Model", "sourceId": "choosing-a-model", "transcriptRefs": [], "readingMinutes": 5 }
+      ]
+    },
+    {
+      "id": "biz-advanced",
+      "title": "Business Applications",
+      "level": "Advanced",
+      "type": "business",
+      "order": 14,
+      "topics": [
+        { "id": "biz-workflow", "label": "Workflow & Process Automation", "sourceId": "biz-workflow", "transcriptRefs": [], "readingMinutes": 5 },
+        { "id": "biz-pricing", "label": "Pricing Your AI Services", "sourceId": "biz-pricing", "transcriptRefs": [], "readingMinutes": 5 },
+        { "id": "biz-pitch", "label": "Pitching Clients on AI", "sourceId": "biz-pitch", "transcriptRefs": [], "readingMinutes": 5 },
+        { "id": "biz-docs", "label": "Document Processing & Extraction", "sourceId": "biz-docs", "transcriptRefs": [], "readingMinutes": 5 }
+      ]
+    }
+  ]
+}
