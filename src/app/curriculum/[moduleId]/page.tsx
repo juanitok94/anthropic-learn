@@ -1,5 +1,5 @@
 'use client';
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect, use } from 'react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import curriculum from '@/data/curriculum.json';
@@ -30,8 +30,9 @@ function renderMd(text: string): string {
     .replace(/^(?!<[hup/<])(.+)$/gm, m => m.trim() ? `<p>${m}</p>` : '');
 }
 
-export default function ModulePage({ params }: { params: { moduleId: string } }) {
-  const mod = curriculumData.modules.find(m => m.id === params.moduleId);
+export default function ModulePage({ params }: { params: Promise<{ moduleId: string }> }) {
+  const { moduleId } = use(params);
+  const mod = curriculumData.modules.find(m => m.id === moduleId);
   if (!mod) notFound();
 
   const { progress, markUnderstood, addRecentlyViewed } = useProgress();
